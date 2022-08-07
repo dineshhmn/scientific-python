@@ -27,7 +27,7 @@ class Solution:
             stack = []
             mid = n // 2
             if target > nums[mid]:
-                return self.searchInsert(nums[mid:], target)
+                returelf.searchInsert(nums[mid:], target)
             else:
                 return self.searchInsert(nums[:mid], target)
 
