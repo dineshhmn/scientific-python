@@ -47,9 +47,7 @@ class Solution:
             en = 1
             current_len = 0
             while en < n:
-                dict = {s[i]: i for i in range(len(s[st:en]))}
-                print(en)
-                if s[en] in dict.keys():
+                if s[en] in s[st:en]:
                     st +=1
                 else:
                     en +=1
@@ -58,20 +56,33 @@ class Solution:
                     current_len = t
             return current_len
 
+    def lengthOfLongestSubstring3(self, s):
+        """Try #3 with sliding window technique """
+        res = 0
+        l = 0
+        charset = {}
+        for r in range(len(s)):
+            while s[r] in charset:
+                charset.pop(s[l])
+                l+=1
+            charset[s[r]] = 1
+            res = max(res, r - l+1)
+        return res
+
 
 if __name__ == "__main__":
     sol = Solution()
     s = "abcabcbb"
     print(sol.lengthOfLongestSubstring(s))
-    # s = "pwwkew"
-    # print(sol.lengthOfLongestSubstring(s))
-    # s = "bbbbb"
-    # print(sol.lengthOfLongestSubstring(s))
-    # s = " "
-    # print(sol.lengthOfLongestSubstring(s))
-    # s = "au"
-    # print(sol.lengthOfLongestSubstring(s))
-    # s = "aab"
-    # print(sol.lengthOfLongestSubstring(s))
-    # s = "dvdf"
-    # print(sol.lengthOfLongestSubstring(s))
+    s = "pwwkew"
+    print(sol.lengthOfLongestSubstring(s))
+    s = "bbbbb"
+    print(sol.lengthOfLongestSubstring(s))
+    s = " "
+    print(sol.lengthOfLongestSubstring(s))
+    s = "au"
+    print(sol.lengthOfLongestSubstring(s))
+    s = "aab"
+    print(sol.lengthOfLongestSubstring(s))
+    s = "dvdf"
+    print(sol.lengthOfLongestSubstring(s))
